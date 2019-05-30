@@ -18,7 +18,7 @@ public final class FileUitl {
      * @param path 文件路径
      * @return true成功，false失败
      */
-    public static boolean createFileOrDirectory(String path) {
+    public static boolean createDirectory(String path) {
         return createFileOrDirectory(path, true);
     }
 
@@ -93,13 +93,11 @@ public final class FileUitl {
      */
     public static boolean writeFile(String filePath, byte[] writeData) {
         try {
-            if (isFile(filePath)) {
-                FileOutputStream fOut = new FileOutputStream(filePath);
-                fOut.write(writeData);
-                fOut.flush();
-                fOut.close();
-                return true;
-            }
+            FileOutputStream fOut = new FileOutputStream(filePath);
+            fOut.write(writeData);
+            fOut.flush();
+            fOut.close();
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
         }
