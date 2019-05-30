@@ -98,7 +98,7 @@ public class XlsUtil {
     }
 
     /**
-     * 在已有的表里面插入一行新数据(原数据保留)
+     * 在已有的表里面插入一行新数据，若没数据则从第一行开始(原数据保留)
      * notice : 使用此方法需保证 {@link #filePath} {@link #tableName}不为空
      *
      * @param data 需要新插入的一行数据
@@ -109,7 +109,7 @@ public class XlsUtil {
     }
 
     /**
-     * 在已有的表里面插入一行新数据(原数据保留)
+     * 在已有的表里面插入一行新数据，若没数据则从第一行开始(原数据保留)
      * notic：此处使用的execel的文件格式为2003版本，结尾为xls，不支持2007版本的解析
      *
      * @param filePath  xls文件的路径
@@ -126,7 +126,7 @@ public class XlsUtil {
             if (sheet == null)
                 throw new FileNotFoundException("The name of sheet is not found ,please check the name");
             int postion = sheet.getLastRowNum();
-            postion = postion < 0 ? 0 : postion + 1;
+            postion = postion == 0 ? 0 : postion + 1;
             // 填一行内容
             Row row = sheet.createRow(postion);
             for (int i = 0; i < data.length; i++) {
